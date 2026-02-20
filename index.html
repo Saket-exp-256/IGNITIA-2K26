@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ignitia 2026 – Where Culture Meets the Cosmos</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bio-cyan: #00f5d4;
+    --bio-teal: #00c4b4;
+    --nebula-purple: #7b2ff7;
+    --nebula-pink: #f72585;
+    --nebula-blue: #4361ee;
+    --gold: #c9a84c;
+    --dark: #020d1a;
+    --text: #e8f4f8;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'Raleway', sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    height: 68px;
+    background: rgba(2, 13, 26, 0.97);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0, 245, 212, 0.13);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 56px;
+  }
+
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(to right, transparent, rgba(0,245,212,0.4), transparent);
+  }
+
+  .logo {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 1.3rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--bio-cyan), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Cinzel', serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(232,244,248,0.62);
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    display: block;
+    transition: color 0.2s, background 0.2s, border-color 0.2s;
+    white-space: nowrap;
+  }
+
+  .nav-links a:hover {
+    color: var(--bio-cyan);
+    background: rgba(0,245,212,0.06);
+    border-color: rgba(0,245,212,0.18);
+  }
+
+  .nav-links a.active {
+    color: var(--bio-cyan);
+    background: rgba(0,245,212,0.08);
+    border-color: rgba(0,245,212,0.22);
+  }
+
+  .nav-links .btn-login {
+    color: var(--bio-cyan);
+    border: 1px solid var(--bio-cyan);
+    border-radius: 24px;
+    padding: 8px 24px;
+    margin-left: 6px;
+  }
+
+  .nav-links .btn-login:hover {
+    background: rgba(0,245,212,0.1);
+    border-color: var(--bio-cyan);
+    color: var(--bio-cyan);
+  }
+
+  /* ── HERO ─────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 100px 24px 80px;
+    position: relative;
+    overflow: hidden;
+    background: var(--dark);
+  }
+
+  /* Nebula + bioluminescence static background */
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 750px 520px at 8%  18%,  rgba(123, 47,247,0.16) 0%, transparent 68%),
+      radial-gradient(ellipse 620px 420px at 92% 12%,  rgba(247, 37,133,0.11) 0%, transparent 68%),
+      radial-gradient(ellipse 540px 360px at 50% 28%,  rgba( 67, 97,238,0.09) 0%, transparent 68%),
+      radial-gradient(ellipse 900px 320px at 50%  0%,  rgba(123, 47,247,0.10) 0%, transparent 55%),
+      radial-gradient(ellipse 1100px 200px at 50% 100%, rgba(  0,245,212,0.10) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Bio ocean glow at base */
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 260px;
+    background: linear-gradient(to top, rgba(0,245,212,0.10), rgba(0,196,180,0.04), transparent);
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-tagline {
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: var(--bio-teal);
+    text-shadow: 0 0 20px rgba(0,245,212,0.55);
+    margin-bottom: 26px;
+  }
+
+  .hero-title {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: clamp(4.5rem, 12vw, 9.5rem);
+    font-weight: 900;
+    line-height: 1;
+    background: linear-gradient(140deg, var(--bio-cyan) 0%, #ffffff 42%, var(--bio-teal) 68%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 32px rgba(0,245,212,0.40));
+    margin-bottom: 18px;
+  }
+
+  .hero-year {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: clamp(1.5rem, 3.2vw, 2.6rem);
+    font-weight: 700;
+    letter-spacing: 16px;
+    color: var(--gold);
+    text-shadow: 0 0 28px rgba(201,168,76,0.65);
+    margin-bottom: 36px;
+  }
+
+  .hero-subtitle {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    font-size: 0.95rem;
+    letter-spacing: 3.5px;
+    color: rgba(232,244,248,0.48);
+    margin-bottom: 56px;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn-primary {
+    padding: 14px 42px;
+    background: linear-gradient(135deg, var(--bio-cyan), var(--bio-teal));
+    color: var(--dark);
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 0 30px rgba(0,245,212,0.35), 0 6px 24px rgba(0,0,0,0.4);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 52px rgba(0,245,212,0.6), 0 10px 32px rgba(0,0,0,0.5);
+  }
+
+  .btn-secondary {
+    padding: 14px 42px;
+    background: transparent;
+    color: rgba(232,244,248,0.72);
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    border: 1px solid rgba(232,244,248,0.22);
+    border-radius: 50px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--bio-cyan);
+    color: var(--bio-cyan);
+    transform: translateY(-2px);
+  }
+
+  /* Bio glow line at bottom */
+  .hero-line {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--bio-cyan), var(--bio-teal), var(--bio-cyan), transparent);
+    box-shadow: 0 0 22px 6px rgba(0,245,212,0.3);
+    z-index: 3;
+  }
+
+  /* Scroll hint */
+  .scroll-hint {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    z-index: 3;
+    color: rgba(0,245,212,0.4);
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+  }
+
+  .scroll-hint-line {
+    width: 1px;
+    height: 44px;
+    background: linear-gradient(to bottom, var(--bio-cyan), transparent);
+  }
+
+  footer {
+    background: linear-gradient(to top, #010810, var(--dark));
+    border-top: 1px solid rgba(0,245,212,0.1);
+    padding: 80px 60px 36px;
+    position: relative;
+  }
+
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(to right, transparent, var(--bio-cyan), var(--nebula-purple), var(--bio-cyan), transparent);
+    box-shadow: 0 0 18px rgba(0,245,212,0.28);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr 1fr 1fr;
+    gap: 60px;
+    max-width: 1320px;
+    margin: 0 auto 52px;
+  }
+
+  .footer-logo {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 1.65rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--bio-cyan), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .footer-year {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 7px;
+    color: var(--gold);
+    margin-bottom: 18px;
+    display: block;
+  }
+
+  .footer-desc {
+    font-size: 0.88rem;
+    color: rgba(232,244,248,0.44);
+    line-height: 1.8;
+    margin-bottom: 28px;
+    max-width: 260px;
+  }
+
+  .social-row {
+    display: flex;
+    gap: 10px;
+  }
+
+  .social-btn {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,245,212,0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(232,244,248,0.48);
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+
+  .social-btn:hover {
+    border-color: var(--bio-cyan);
+    color: var(--bio-cyan);
+    background: rgba(0,245,212,0.07);
+  }
+
+  .footer-col h4 {
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(232,244,248,0.82);
+    margin-bottom: 22px;
+    padding-bottom: 12px;
+    position: relative;
+  }
+
+  .footer-col h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 28px; height: 1px;
+    background: var(--bio-cyan);
+    box-shadow: 0 0 6px var(--bio-cyan);
+  }
+
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 11px; }
+  .footer-col ul li a {
+    color: rgba(232,244,248,0.38);
+    text-decoration: none;
+    font-size: 0.87rem;
+    display: inline-block;
+    transition: color 0.2s, padding-left 0.2s;
+  }
+  .footer-col ul li a:hover {
+    color: var(--bio-cyan);
+    padding-left: 5px;
+  }
+
+  .footer-bottom {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding-top: 28px;
+    border-top: 1px solid rgba(232,244,248,0.07);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    color: rgba(232,244,248,0.26);
+    letter-spacing: 1px;
+  }
+
+  @media (max-width: 900px) {
+    header { padding: 0 20px; }
+    .nav-links { gap: 2px; }
+    .nav-links a { padding: 7px 10px; font-size: 0.6rem; letter-spacing: 1px; }
+    .nav-links .btn-login { padding: 7px 14px; }
+    footer { padding: 60px 24px 30px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+    .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+  }
+
+  @media (max-width: 600px) {
+    .nav-links li:not(:last-child):not(:first-child) { display: none; }
+    .hero-subtitle { font-size: 0.78rem; letter-spacing: 2px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="#" class="logo">ignitia 2026</a>
+  <ul class="nav-links">
+    <li><a href="#" class="active">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Events</a></li>
+    <li><a href="#">Gallery</a></li>
+    <li><a href="#">Sponsors</a></li>
+    <li><a href="#">Team</a></li>
+    <li><a href="#" class="btn-login">Login</a></li>
+  </ul>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <p class="hero-tagline">Where Culture Meets the Cosmos</p>
+    <h1 class="hero-title">Ignitia</h1>
+    <div class="hero-year">2 0 2 6</div>
+    <p class="hero-subtitle">Annual Cultural Festival &nbsp;·&nbsp; Celebrate &nbsp;·&nbsp; Illuminate &nbsp;·&nbsp; Inspire</p>
+    <div class="hero-cta">
+      <a href="#" class="btn-primary">Explore Events</a>
+      <a href="#" class="btn-secondary">Register Now</a>
+    </div>
+  </div>
+  <div class="hero-line"></div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+
+    <div>
+      <span class="footer-logo">ignitia</span>
+      <span class="footer-year">2 K 2 6</span>
+      <p class="footer-desc">Join us for an unforgettable celebration of art, music, and culture.</p>
+      <div class="social-row">
+        <a href="#" class="social-btn">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="#" class="social-btn">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+        </a>
+        <a href="#" class="social-btn">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+        <a href="#" class="social-btn">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-1.95C18.88 4 12 4 12 4s-6.88 0-8.6.47A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.4 19.53C5.12 20 12 20 12 20s6.88 0 8.6-.47a2.78 2.78 0 001.94-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Our Teams</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Explore More</h4>
+      <ul>
+        <li><a href="#">Events</a></li>
+        <li><a href="#">Gallery</a></li>
+        <li><a href="#">Sponsors</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Refund Policy</a></li>
+        <li><a href="#">Terms &amp; Conditions</a></li>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Delivery &amp; Shipping</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 Ignitia. All rights reserved.</span>
+    <span>Made with luminescence ✦</span>
+  </div>
+</footer>
+
+</body>
+</html>
